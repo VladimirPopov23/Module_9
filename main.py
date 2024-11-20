@@ -1,14 +1,13 @@
-# module_9_1.py
-# 20.11.2024 Задача "Вызов разом"
+# module_9_2.py
+# 20.11.2024 Домашнее задание по теме "Списковые, словарные сборки"
 
+first_strings = ['Elon', 'Musk', 'Programmer', 'Monitors', 'Variable']
+second_strings = ['Task', 'Git', 'Comprehension', 'Java', 'Computer', 'Assembler']
 
-def apply_all_func(int_list, *functions):
-    results = {}
+first_result = [len(x) for x in first_strings if (len(x) >= 5)]
+second_result = [(x, y) for x in first_strings for y in second_strings if (len(x) == len(y))]
+third_result = {x: len(x) for x in first_strings + second_strings if (len(x) % 2) == 0}
 
-    for i in functions:
-        results[i.__name__] = i(int_list)
-    return results
-
-
-print(apply_all_func([6, 20, 15, 9], max, min))
-print(apply_all_func([6, 20, 15, 9], len, sum, sorted))
+print(first_result)
+print(second_result)
+print(third_result)
