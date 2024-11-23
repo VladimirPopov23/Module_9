@@ -1,11 +1,38 @@
-# module_9_3.py
-# 20.11.2024 Домашнее задание по теме "Генераторные сборки"
+# module_9_4.py
+# 23.11.2024 Задача "Функциональное разнообразие"
 
-first = ['Strings', 'Student', 'Computers']
-second = ['Строка', 'Урбан', 'Компьютер']
+from pprint import pprint
+from random import choice
 
-first_result = (len(x) - len(y) for x, y in zip(first, second) if len(x) != len(y))
-second_result = (len(first[x]) == len(second[x]) for x in range(len(first)))
+#  Задание 1. Lambda-функция:
+first = 'Мама мыла раму'
+second = 'Рамена мало было'
+print(list(map(lambda x, y: x == y, first, second)))
 
-print(list(first_result))
-print(list(second_result))
+
+# Задание 2. Замыкание:
+def get_advanced_writer(file_name):
+    def write_everything(*data_set):
+        with open(file_name, 'w', encoding='utf-8') as file:
+            for i in data_set:
+                file.write(f'{i}\n')
+    return write_everything
+
+
+write = get_advanced_writer('example.txt')
+write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
+
+
+#  Задание 3. Метод __call__:
+class MysticBall:
+    def __init__(self, *words):
+        self.words = words
+
+    def __call__(self):
+        return choice(self.words)
+
+
+first_ball = MysticBall('Да', 'Нет', 'Наверное')
+print(first_ball())
+print(first_ball())
+print(first_ball())
